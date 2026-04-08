@@ -142,6 +142,7 @@ def Expense_delete(request, id):
 from django.http import JsonResponse
 import datetime
 
+
 def expense_category_summary(request):
     todays_date = datetime.date.today()
     six_months_ago = todays_date - datetime.timedelta(days=30 * 6)

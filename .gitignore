@@ -1,8 +1,4 @@
-# Python compiled files
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
+
 
 # Virtual environment
 venv/
@@ -13,6 +9,3 @@ venv/
 # Django static/media files (generated)
 staticfiles/
 media/
-
-# IDE/editor
-.vscode/

@@ -1,4 +1,3 @@
-
 const renderChart = (data, labels) => {
   const ctx = document.getElementById("myChart").getContext("2d");
 
@@ -32,7 +31,7 @@ const renderChart = (data, labels) => {
   plugins: {
     title: {
       display: true,
-      text: "Expenses per category",
+      text: "Income per Source",
     },
     legend: {
       position: "top",
@@ -45,12 +44,12 @@ const renderChart = (data, labels) => {
 const getChartData = () => {
   console.log("fetching");
 
-  fetch("/expense_category_summary/")
+  fetch("/income/income_summary/")
     .then(res => res.json())
     .then(results => {
       console.log("results", results);
 
-      const category_data = results.expense_category_data;
+      const category_data = results.income_data;
       const labels = Object.keys(category_data);
       const data = Object.values(category_data);
 
