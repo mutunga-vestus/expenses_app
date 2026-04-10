@@ -14,7 +14,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
-
+from django.db.models import Q
+from django.template.defaultfilters import date as django_date_filter
 # Create your views here.
 def search_expense(request):
     if request.method == 'POST':
@@ -31,7 +32,7 @@ def search_expense(request):
 
         data = expenses.values()
         return JsonResponse(list(data), safe=False)
-
+    
 @login_required(login_url='/authentication/login')
 def index(request):
     categories = Category.objects.all()

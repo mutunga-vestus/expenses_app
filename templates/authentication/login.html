@@ -3,55 +3,65 @@
 
 {% block content %}
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-      <div class="card mt-5 shadow-sm">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-md">
+    
+    <div class="text-center">
+      <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+        Login to your account
+      </h2>
+    </div>
 
-        <div class="card-body">
-          <div class="card-title text-center py-3">
-            <h4>Login to your account</h4>
-          </div>
+    <form class="mt-8 space-y-6" action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      {% include 'partials/_messages.html' %}
 
-          <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            {% include 'partials/_messages.html' %}
+      <div class="rounded-md shadow-sm space-y-4">
+        <div>
+          <input
+            type="text"
+            name="username"
+            id="usernameField"
+            value="{{fieldValues.username}}"
+            placeholder="Username"
+            required
+            class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          />
+        </div>
 
-            <div class="form-group mb-3">
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                id="usernameField"
-                value="{{fieldValues.username}}"
-                class="form-control form-control-lg"
-              />
-            </div>
-
-            <div class="form-group mb-3 position-relative">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                class="form-control form-control-lg"
-                id="passwordField"
-              />
-              <small class="position-absolute end-0 top-50 translate-middle-y me-3 ShowPassword" style="cursor: pointer;">
-                SHOW
-              </small>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg w-100">Login</button>
-          </form>
-
-          <div class="text-center mt-3">
-            <span>Don't have an account? </span><a href="{% url 'register' %}">Register</a><br>
-            <span>Forgot password? </span><a href="{% url 'request-password' %}">Reset password</a>
-          </div>
-
+        <div class="relative">
+          <input
+            type="password"
+            name="password"
+            id="passwordField"
+            placeholder="Password"
+            required
+            class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          />
+          <small class="ShowPassword absolute inset-y-0 right-0 pr-3 flex items-center text-xs font-bold leading-5 cursor-pointer text-indigo-600 hover:text-indigo-500 uppercase">
+            Show
+          </small>
         </div>
       </div>
+
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+          Login
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center space-y-2 text-sm">
+      <p class="text-gray-600">
+        Don't have an account? 
+        <a href="{% url 'register' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
+      </p>
+      <p class="text-gray-600">
+        Forgot password? 
+        <a href="{% url 'request-password' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Reset password</a>
+      </p>
     </div>
+
   </div>
 </div>
 

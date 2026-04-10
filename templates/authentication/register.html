@@ -1,88 +1,82 @@
 {% extends 'partials/base_auth.html' %}
-
 {% load static %}
 
 {% block content %}
-
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <div class="card mt-5">
-
-
-      <div class="card-body">
-        <div class="card-title py-3">
-          <h4>Register for a free account</h4>
-        </div>
-        <form action="{% url 'register' %}" method="post">
-          {% csrf_token %}
-          {% include 'partials/_messages.html' %}
-          
-          <div class="form-group">
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              id="usernameField"
-              value="{{fieldValues.username}}"
-              class="form-control form-control-sm"
-            />
-          </div>
-          <div class="invalid_feedback invalid-feedback" style="display:none">
-          </div>
-          <p class="text-sm text-success usernameSuccessOutput"></p>
-           
-          <div class="form-group">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              class="form-control form-control-sm"
-              id="emailField"
-              value="{{fieldValues.email}}"
-
-             
-            />
-          </div>
-
-          <div class="emailfeedbackArea invalid-feedback" style="display:none">
-          </div>
-          <p class="text-sm text-success emailSuccessOutput"></p>
-
-          <div class="form-group">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              class="form-control form-control-sm"
-              id="passwordField"
-            />
-            <small class="float-right py-3 ShowPassword">SHOW</small>
-          </div>
-
-          </div>
-          <div class="invalid_feedback invalid-feedback" style="display:none">
-          </div>
-          
-        
-
-
-          <input type="submit" value="Register" class="btn btn-block btn-primary submit-btn" />
-        </form>
-        <div class="container">
-          <span class="text lead lead"> have an account?</span><a href="{% url 'login' %}">Login</a><br>
-        <span class="text lead lead">forgot password? </span><a href="{% url 'request-password' %}">Reset passowrd</a>
-        </div>
-
-
-      </div>
-        
-      </div>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-md border border-gray-100">
+    
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900">
+        Register for a free account
+      </h2>
     </div>
+
+    <form action="{% url 'register' %}" method="post" class="mt-8 space-y-4">
+      {% csrf_token %}
+      {% include 'partials/_messages.html' %}
+      
+      <div>
+        <input
+          type="text"
+          name="username"
+          id="usernameField"
+          value="{{fieldValues.username}}"
+          placeholder="Username"
+          class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+        <div class="invalid_feedback text-red-500 text-xs mt-1" style="display:none"></div>
+        <p class="text-xs text-green-600 mt-1 usernameSuccessOutput"></p>
+      </div>
+
+      <div>
+        <input
+          type="email"
+          name="email"
+          id="emailField"
+          value="{{fieldValues.email}}"
+          placeholder="Email"
+          class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+        <div class="emailfeedbackArea text-red-500 text-xs mt-1" style="display:none"></div>
+        <p class="text-xs text-green-600 mt-1 emailSuccessOutput"></p>
+      </div>
+
+      <div class="relative">
+        <input
+          type="password"
+          name="password"
+          id="passwordField"
+          placeholder="Password"
+          class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+        <small class="ShowPassword absolute inset-y-0 right-0 pr-3 flex items-center text-xs font-bold cursor-pointer text-indigo-600 hover:text-indigo-500 uppercase">
+          Show
+        </small>
+        <div class="invalid_feedback text-red-500 text-xs mt-1" style="display:none"></div>
+      </div>
+
+      <div class="pt-2">
+        <input 
+          type="submit" 
+          value="Register" 
+          class="submit-btn w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out cursor-pointer" 
+        />
+      </div>
+    </form>
+
+    <div class="text-center mt-6 space-y-2">
+      <p class="text-sm text-gray-600">
+        Already have an account? 
+        <a href="{% url 'login' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
+      </p>
+      <p class="text-sm text-gray-600">
+        Forgot password? 
+        <a href="{% url 'request-password' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Reset password</a>
+      </p>
+    </div>
+
   </div>
-  <div class="col-md-4"></div>
 </div>
 
 <script src="{% static 'js/reg.js' %}"></script>
-
 {% endblock %}
