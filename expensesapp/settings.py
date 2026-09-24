@@ -33,9 +33,21 @@ SECRET_KEY = 'django-insecure-fzpcs6^7kgj8v!ep5=%(3hrhz65nw**a&#b27c13jnzd==ez@5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1',
+ALLOWED_HOSTS = [
+    '127.0.0.1',
     'localhost',
-    'unlineal-interpervasively-jestine.ngrok-free.dev',]
+    'web',          # docker-compose service name
+    '*',            # or your real domain / ngrok host
+]
+
+# Optional: serve static files with WhiteNoise in production
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # add this line
+    # ... rest of middleware
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'http://localhost',
